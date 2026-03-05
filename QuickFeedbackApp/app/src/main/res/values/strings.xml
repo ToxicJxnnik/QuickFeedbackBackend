@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">QuickFeedback</string>
+    <string name="no_feedback">No feedback yet</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="feedback_details">Feedback Details</string>
+    <string name="delete_feedback">Delete Feedback</string>
+    <string name="btn_submit">Submit</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_message">Message</string>
+    <string name="label_name">Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_message">Message</string>
+    <string name="label_submitted">Submitted</string>
+</resources>
