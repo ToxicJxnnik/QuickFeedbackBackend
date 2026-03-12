@@ -7,8 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    // TODO: Replace with your actual backend URL
-    private static final String BASE_URL = "https://YOUR_BACKEND_URL_HERE/";
+    // 10.0.2.2 is the Android emulator's alias for the host machine's localhost
+    private static final String BASE_URL = "http://10.0.2.2:58556/";
 
     private static RetrofitClient instance;
     private final FeedbackApiService apiService;
