@@ -12,7 +12,12 @@ builder.Services.AddControllers();
 var connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_quickfeedbackdb");
 
 builder.Services.AddDbContext<FeedbackDbContext>(options =>
-    options.UseSqlServer(connectionString));
+{
+    if (string.IsNullOrEmpty(connectionString))
+        options.UseInMemoryDatabase("QuickFeedbackDb");
+    else
+        options.UseSqlServer(connectionString);
+});
 
 // Configure CORS
 builder.Services.AddCors(options =>
@@ -37,11 +42,14 @@ app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();
 
-// Auto-migrate database on startup
+// Auto-migrate database on startup (use EnsureCreated for in-memory, Migrate for SQL Server)
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<FeedbackDbContext>();
-    dbContext.Database.Migrate();
+    if (string.IsNullOrEmpty(connectionString))
+        dbContext.Database.EnsureCreated();
+    else
+        dbContext.Database.Migrate();
 }
 
 app.Run();
